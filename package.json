@@ -1,0 +1,13 @@
+{
+  "name": "cn-simulator-pbl-vinay",
+  "version": "1.0.0",
+  "description": "PBL-8 Web Performance Optimization Simulator for College Admission Portals",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["pbl", "computer-networks", "web-performance", "simulator", "http2", "caching"],
+  "author": "Vinay",
+  "license": "MIT"
+}

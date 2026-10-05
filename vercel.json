@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "cn-simulator-pbl-vinay",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
