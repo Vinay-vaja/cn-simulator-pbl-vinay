@@ -1,5 +1,5 @@
 /**
- * PBL-8 Web Performance Engine - Simulation Module (Pitch Black & Gold Edition)
+ * PBL-8 Web Performance Engine - Simulation Module (Crisp White Theme Edition)
  * Simulates network packet flow, TCP handshakes, latency formulas, and server load
  */
 
@@ -78,15 +78,15 @@ class PerformanceSimulator {
     
     // 1. Compression Factor
     let compressionRatio = 1.0;
-    if (s.compression === 'gzip') compressionRatio = 0.32; // 68% savings
-    if (s.compression === 'brotli') compressionRatio = 0.18; // 82% savings
+    if (s.compression === 'gzip') compressionRatio = 0.32;
+    if (s.compression === 'brotli') compressionRatio = 0.18;
     if (s.minify) compressionRatio *= 0.85;
 
     // 2. Cookie Overhead
     let cookieBytesPerRequest = 0;
-    if (s.cookieMode === 'bloated') cookieBytesPerRequest = 4200; // 4.2 KB
-    else if (s.cookieMode === 'standard') cookieBytesPerRequest = 1024; // 1 KB
-    else cookieBytesPerRequest = 200; // 200B lightweight token only on dynamic APIs
+    if (s.cookieMode === 'bloated') cookieBytesPerRequest = 4200;
+    else if (s.cookieMode === 'standard') cookieBytesPerRequest = 1024;
+    else cookieBytesPerRequest = 200;
 
     const totalCookieBytes = (s.cookieMode === 'optimized') 
       ? 5 * cookieBytesPerRequest
@@ -193,53 +193,49 @@ class PerformanceSimulator {
     const elCanvasLiveLog = document.getElementById('logMessage');
     const elStudentCountLabel = document.getElementById('studentCountLabel');
     const elRttLabel = document.getElementById('rttLabel');
-    const elHttpTag = document.getElementById('httpTag');
-    const elCookieTag = document.getElementById('cookieTag');
     const elWaterfallBadge = document.getElementById('waterfallSummaryBadge');
 
-    if (elPageLoad) elPageLoad.innerHTML = `${s.pageLoadTime} <span class="unit">ms</span>`;
-    if (elServerCpu) elServerCpu.innerHTML = `${s.serverCpu} <span class="unit">%</span>`;
-    if (elBandwidth) elBandwidth.innerHTML = `${s.bandwidthPerUser} <span class="unit">MB/page</span>`;
-    if (elTcpHandshakes) elTcpHandshakes.innerHTML = `${s.tcpHandshakes} <span class="unit">sockets</span>`;
+    if (elPageLoad) elPageLoad.innerHTML = `${s.pageLoadTime} <span class="m-unit">ms</span>`;
+    if (elServerCpu) elServerCpu.innerHTML = `${s.serverCpu} <span class="m-unit">%</span>`;
+    if (elBandwidth) elBandwidth.innerHTML = `${s.bandwidthPerUser} <span class="m-unit">MB/page</span>`;
+    if (elTcpHandshakes) elTcpHandshakes.innerHTML = `${s.tcpHandshakes} <span class="m-unit">sockets</span>`;
     
-    if (elStudentCountLabel) elStudentCountLabel.innerText = `${s.students.toLocaleString()} Users`;
+    if (elStudentCountLabel) elStudentCountLabel.innerText = `${s.students.toLocaleString()}`;
     if (elRttLabel) elRttLabel.innerText = `${s.rtt} ms`;
-    if (elHttpTag) elHttpTag.innerText = s.httpVersion.toUpperCase();
-    if (elCookieTag) elCookieTag.innerText = s.cookieMode;
     if (elCanvasLiveLog) elCanvasLiveLog.innerText = s.statusMessage;
 
     // Bar CPU Color
     if (elBarServerCpu) {
       elBarServerCpu.style.width = `${s.serverCpu}%`;
-      if (s.serverCpu > 85) elBarServerCpu.style.background = '#ff3366';
-      else if (s.serverCpu > 55) elBarServerCpu.style.background = '#ffb703';
-      else elBarServerCpu.style.background = '#ffbd39';
+      if (s.serverCpu > 85) elBarServerCpu.style.background = '#dc2626';
+      else if (s.serverCpu > 55) elBarServerCpu.style.background = '#d97706';
+      else elBarServerCpu.style.background = '#2563eb';
     }
 
     // Status classes
     if (elStatusServerCpu) {
       if (s.serverCpu > 85) {
-        elStatusServerCpu.className = 'metric-status status-danger';
-        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-fire text-danger"></i> Severe Overload (${s.errorRate}% Errors)`;
+        elStatusServerCpu.className = 'm-status text-danger';
+        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-fire"></i> Overload (${s.errorRate}% Errors)`;
       } else if (s.serverCpu > 55) {
-        elStatusServerCpu.className = 'metric-status status-warning';
-        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-warning"></i> High Load`;
+        elStatusServerCpu.className = 'm-status text-warning';
+        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> High Load`;
       } else {
-        elStatusServerCpu.className = 'metric-status status-good';
-        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-circle-check text-warning"></i> Optimal & Scalable`;
+        elStatusServerCpu.className = 'm-status text-success';
+        elStatusServerCpu.innerHTML = `<i class="fa-solid fa-circle-check"></i> Optimal`;
       }
     }
 
     if (elStatusPageLoad) {
       if (s.pageLoadTime > 4000) {
-        elStatusPageLoad.className = 'metric-status status-danger';
-        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-circle-xmark text-danger"></i> Frustrating (14.6x Slower)`;
+        elStatusPageLoad.className = 'm-status text-danger';
+        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Severe Delay`;
       } else if (s.pageLoadTime > 1200) {
-        elStatusPageLoad.className = 'metric-status status-warning';
-        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-clock text-warning"></i> Moderate Lag`;
+        elStatusPageLoad.className = 'm-status text-warning';
+        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-clock"></i> Moderate Lag`;
       } else {
-        elStatusPageLoad.className = 'metric-status status-good';
-        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-bolt text-warning"></i> Lightning Fast (${s.pageLoadTime}ms)`;
+        elStatusPageLoad.className = 'm-status text-success';
+        elStatusPageLoad.innerHTML = `<i class="fa-solid fa-bolt"></i> 97% Faster (${s.pageLoadTime}ms)`;
       }
     }
 
@@ -248,8 +244,8 @@ class PerformanceSimulator {
     const elProxySub = document.getElementById('proxyNodeSub');
     const elServerSub = document.getElementById('serverNodeSub');
     if (elClientSub) elClientSub.innerText = `${(s.students/1000).toFixed(1)}k Active`;
-    if (elProxySub) elProxySub.innerText = s.cachingEnabled ? `Cache: ${s.cacheHitRate}% Hit` : `Proxy: Bypass`;
-    if (elServerSub) elServerSub.innerText = `${s.serverNodes} Node(s) (${s.serverCpu}%)`;
+    if (elProxySub) elProxySub.innerText = s.cachingEnabled ? `${s.cacheHitRate}% Cache Hit` : `Bypass`;
+    if (elServerSub) elServerSub.innerText = `${s.serverNodes} Nodes (${s.serverCpu}%)`;
 
     if (elWaterfallBadge) elWaterfallBadge.innerText = `Total: ${s.pageLoadTime} ms`;
 
@@ -320,12 +316,12 @@ class PerformanceSimulator {
     ];
 
     const colors = {
-      syn: '#ffffff',
-      get: '#ffbd39',
-      cacheHit: '#ffbd39',
-      originReq: '#ffb703',
-      resOk: '#00e676',
-      resError: '#ff3366'
+      syn: '#2563eb',
+      get: '#0284c7',
+      cacheHit: '#8b5cf6',
+      originReq: '#d97706',
+      resOk: '#16a34a',
+      resError: '#dc2626'
     };
 
     this.packets.push({
@@ -335,7 +331,7 @@ class PerformanceSimulator {
       endY: nodePositions[targetIdx].y,
       progress: 0,
       speed: (1 / (this.state.rtt * 0.8)) * (0.8 + Math.random() * 0.4),
-      color: colors[type] || '#ffbd39',
+      color: colors[type] || '#2563eb',
       size: type === 'syn' ? 3.5 : (type === 'cacheHit' ? 5.5 : 4.5),
       type: type
     });
@@ -362,7 +358,7 @@ class PerformanceSimulator {
       this.ctx.beginPath();
       this.ctx.moveTo(nodeX[0], centerY);
       this.ctx.lineTo(nodeX[3], centerY);
-      this.ctx.strokeStyle = '#1e1e1e';
+      this.ctx.strokeStyle = '#cbd5e1';
       this.ctx.lineWidth = 2;
       this.ctx.setLineDash([4, 4]);
       this.ctx.stroke();
@@ -422,10 +418,7 @@ class PerformanceSimulator {
         this.ctx.beginPath();
         this.ctx.arc(curX, curY, p.size, 0, Math.PI * 2);
         this.ctx.fillStyle = p.color;
-        this.ctx.shadowColor = p.color;
-        this.ctx.shadowBlur = 8;
         this.ctx.fill();
-        this.ctx.shadowBlur = 0;
       }
 
       this.animationId = requestAnimationFrame(animate);

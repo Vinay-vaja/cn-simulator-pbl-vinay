@@ -4,327 +4,315 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PBL-8: Web Performance Optimization Simulator | College Admission System</title>
-  <meta name="description" content="Interactive Simulation & Analysis Platform for PBL-8: Solving College Admission Portal Traffic Bottlenecks using Persistent HTTP, Web Caching, Reverse Proxies, and Cookie Optimization.">
+  <meta name="description" content="Computer Networks PBL-8: Improving Website Performance during College Admission Season using Persistent HTTP, Web Caching, Proxy Servers, Cookies, and Data Compression.">
   
   <!-- Google Fonts: Inter & Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Chart.js CDN for live metrics & graphs -->
+  <!-- Chart.js CDN for live metrics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
-  <!-- Main Stylesheet (Black & Gold Signature Theme) -->
+  <!-- KaTeX for Mathematical Formula Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="if (window.renderMathInElement) renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Top Navigation & Header -->
+  <!-- Clean & Minimal Navbar with exactly 6 tabs -->
   <header class="app-header">
     <div class="header-brand">
-      <div class="brand-badge">PBL-8 PROJECT</div>
-      <div class="brand-title-wrap">
-        <h1 class="brand-title"><i class="fa-solid fa-bolt-lightning brand-icon"></i> APEX<span class="accent-text">PORTAL</span></h1>
-        <p class="brand-subtitle">High-Throughput Web Performance & Admission Scalability Engine</p>
-      </div>
+      <span class="brand-tag">PBL-8 PROJECT</span>
+      <h1 class="brand-title"><i class="fa-solid fa-network-wired text-primary"></i> NetBoost <span class="brand-sub">Engine</span></h1>
     </div>
     
     <nav class="header-nav-tabs" id="navTabs">
-      <button class="nav-tab active" data-tab="simulator">Live Simulator</button>
-      <button class="nav-tab" data-tab="comparison">Before vs After</button>
-      <button class="nav-tab" data-tab="deep-dive">5-Pillar Deep Dive</button>
-      <button class="nav-tab" data-tab="headers">HTTP Inspector</button>
-      <button class="nav-tab" data-tab="dossier">Project Dossier</button>
-      <button class="nav-tab" data-tab="quiz">Evaluator Quiz</button>
+      <a href="#overview" class="nav-tab active" data-target="overview">Overview</a>
+      <a href="#simulator" class="nav-tab" data-target="simulator">Traffic Simulator</a>
+      <a href="#caching-proxy" class="nav-tab" data-target="caching-proxy">Caching & Proxy</a>
+      <a href="#http-cookies" class="nav-tab" data-target="http-cookies">HTTP & Cookies</a>
+      <a href="#architecture" class="nav-tab" data-target="architecture">Architecture</a>
+      <a href="#results" class="nav-tab" data-target="results">Results</a>
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-preset" id="quickPresetUnoptimized"><i class="fa-solid fa-triangle-exclamation text-danger"></i> Crash State</button>
-      <button class="btn btn-preset" id="quickPresetOptimized"><i class="fa-solid fa-bolt text-warning"></i> Ultra-Fast State</button>
+      <button class="btn btn-preset" id="quickPresetUnoptimized" title="Simulate bottleneck crash state"><i class="fa-solid fa-triangle-exclamation text-danger"></i> Crash State</button>
+      <button class="btn btn-preset" id="quickPresetOptimized" title="Apply all PBL-8 optimizations"><i class="fa-solid fa-circle-check text-success"></i> Ultra-Fast State</button>
       <button class="btn btn-primary" id="btnExportReport"><i class="fa-solid fa-print"></i> Export Dossier</button>
     </div>
   </header>
 
-  <!-- Main Workspace Container -->
+  <!-- Main Content Container with 6 Distinct Sections -->
   <main class="main-container">
     
     <!-- ========================================================================= -->
-    <!-- TAB 1: LIVE SIMULATOR -->
+    <!-- 1. OVERVIEW SECTION -->
     <!-- ========================================================================= -->
-    <section id="tab-simulator" class="tab-content active">
-      <!-- Top Alert Summary -->
-      <div class="scenario-banner">
-        <div class="scenario-icon"><i class="fa-solid fa-bullhorn"></i></div>
-        <div class="scenario-info">
-          <h3>Admission Portal Bottleneck Scenario</h3>
-          <p><strong>Problem Statement:</strong> 25,000+ applicants hit <code>admission.college.edu</code> simultaneously. In the default configuration, servers encounter connection exhaustion, 14.6s latency, and 504 Gateway Timeouts. Toggle the PBL-8 optimization pillars below to watch real-time latency and server health transform!</p>
+    <section id="overview" class="pbl-section">
+      <div class="section-card card">
+        <div class="overview-grid">
+          <div class="overview-main">
+            <span class="section-badge">1. Problem Statement & Objectives</span>
+            <h2>College Admission Portal Scalability Investigation</h2>
+            <p class="overview-desc">
+              During admission season, thousands of students simultaneously access <code>admission.college.edu</code>. Under traditional unoptimized web architecture, the portal experiences severe connection exhaustion, 14.6s latency, and 504 Gateway Timeouts. This PBL project investigates root bottlenecks and demonstrates a production-grade optimization model using <strong>Persistent HTTP</strong>, <strong>Web Caching</strong>, <strong>Reverse Proxies</strong>, <strong>Cookie Optimization</strong>, and <strong>Data Compression</strong>.
+            </p>
+            <div class="objectives-chips">
+              <span class="obj-chip"><i class="fa-solid fa-check text-success"></i> Persistent HTTP / HTTP/2</span>
+              <span class="obj-chip"><i class="fa-solid fa-check text-success"></i> Multi-Tier Web Caching</span>
+              <span class="obj-chip"><i class="fa-solid fa-check text-success"></i> Reverse Proxy Load Balancing</span>
+              <span class="obj-chip"><i class="fa-solid fa-check text-success"></i> Cookie & Session Security</span>
+              <span class="obj-chip"><i class="fa-solid fa-check text-success"></i> Brotli / Gzip Compression</span>
+            </div>
+          </div>
+          <div class="overview-status-box">
+            <div class="status-top">
+              <span class="status-dot"></span>
+              <span class="status-title">Simulation Status</span>
+            </div>
+            <div class="status-metric">
+              <span class="sm-label">Simulated Load</span>
+              <h3 id="overviewStudentsCount">15,000 Concurrent Students</h3>
+            </div>
+            <div class="status-metric">
+              <span class="sm-label">Expected Optimized PLT</span>
+              <h3 class="text-success" id="overviewPltCount">420 ms (97.8% Faster)</h3>
+            </div>
+          </div>
         </div>
-        <div class="scenario-badge">
-          <span class="live-dot"></span> SIMULATOR ACTIVE
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. TRAFFIC SIMULATOR SECTION -->
+    <!-- ========================================================================= -->
+    <section id="simulator" class="pbl-section">
+      <div class="section-header">
+        <div>
+          <span class="section-badge">2. Traffic Simulator</span>
+          <h2>Live Admission Traffic & Architecture Simulator</h2>
+        </div>
+        <div class="sc-badge-live">
+          <span class="pulse-green"></span> Engine Active
         </div>
       </div>
 
-      <div class="simulator-layout">
-        <!-- Control Panel (Left Sidebar) -->
+      <div class="simulator-layout-grid">
+        
+        <!-- Controls Column -->
         <aside class="controls-panel card">
-          <div class="panel-header">
-            <h3><i class="fa-solid fa-sliders text-warning"></i> Architecture Controls</h3>
-            <button class="btn-sm btn-outline" id="btnResetControls" title="Reset to Defaults"><i class="fa-solid fa-rotate-left"></i></button>
+          <div class="panel-head">
+            <h3><i class="fa-solid fa-sliders text-success"></i> Simulator Knobs</h3>
+            <button class="btn-icon" id="btnResetControls" title="Reset to Defaults"><i class="fa-solid fa-rotate-left"></i></button>
           </div>
 
-          <!-- Traffic Profile -->
-          <div class="control-group">
-            <div class="group-title">
-              <span><i class="fa-solid fa-users text-warning"></i> Student Traffic Load</span>
-              <span class="badge" id="studentCountLabel">15,000 Users</span>
+          <!-- Student Load Slider -->
+          <div class="ctrl-group">
+            <div class="ctrl-label-wrap">
+              <label><i class="fa-solid fa-users text-success"></i> Student Concurrency</label>
+              <span class="ctrl-val" id="studentCountLabel">15,000 Users</span>
             </div>
             <input type="range" id="studentSlider" min="500" max="50000" step="500" value="15000" class="custom-range">
-            <div class="range-labels">
-              <span>500 (Normal)</span>
-              <span>25k (Peak)</span>
-              <span>50k (Extreme)</span>
-            </div>
+            <div class="range-marks"><span>500</span><span>25k (Peak)</span><span>50k (Max)</span></div>
           </div>
 
-          <div class="control-group">
-            <div class="group-title">
-              <span><i class="fa-solid fa-laptop-code text-warning"></i> Network Latency (RTT)</span>
-              <span class="badge" id="rttLabel">80 ms</span>
+          <!-- Network Latency RTT Slider -->
+          <div class="ctrl-group">
+            <div class="ctrl-label-wrap">
+              <label><i class="fa-solid fa-signal text-success"></i> Network Latency (RTT)</label>
+              <span class="ctrl-val" id="rttLabel">80 ms</span>
             </div>
             <input type="range" id="rttSlider" min="10" max="300" step="10" value="80" class="custom-range">
-            <div class="range-labels">
-              <span>10ms (Fiber)</span>
-              <span>80ms (4G)</span>
-              <span>250ms (3G Mobile)</span>
-            </div>
+            <div class="range-marks"><span>10ms (Fiber)</span><span>80ms (4G)</span><span>250ms (3G)</span></div>
           </div>
 
           <hr class="divider">
 
-          <!-- 5 PBL PILLARS CONTROLS -->
-          <div class="pillars-controls">
-            <h4 class="subheading"><i class="fa-solid fa-shield-halved text-warning"></i> PBL-8 Optimization Pillars</h4>
-
-            <!-- 1. Persistent HTTP -->
-            <div class="pill-control-item">
-              <div class="pill-control-header">
-                <label for="httpVersionSelect"><i class="fa-solid fa-arrow-right-arrow-left text-warning"></i> 1. HTTP Protocol</label>
-                <span class="pill-tag" id="httpTag">HTTP/1.0</span>
-              </div>
+          <!-- Core Pillar Quick Controls -->
+          <div class="quick-knobs">
+            <div class="knob-row">
+              <label for="httpVersionSelect"><i class="fa-solid fa-arrow-right-arrow-left text-success"></i> HTTP Protocol</label>
               <select id="httpVersionSelect" class="custom-select">
-                <option value="http10">HTTP/1.0 (Non-Persistent: 1 TCP per asset)</option>
-                <option value="http11_close">HTTP/1.1 (Keep-Alive: Disabled)</option>
-                <option value="http11_keepalive" selected>HTTP/1.1 (Keep-Alive: Enabled / Pipelined)</option>
-                <option value="http2">HTTP/2 (Multiplexed Streams / 1 Connection)</option>
-                <option value="http3">HTTP/3 QUIC (UDP 0-RTT Multiplexing)</option>
+                <option value="http10">HTTP/1.0 (Non-Persistent: 42 Handshakes)</option>
+                <option value="http11_close">HTTP/1.1 (Keep-Alive Disabled)</option>
+                <option value="http11_keepalive" selected>HTTP/1.1 (Keep-Alive Enabled)</option>
+                <option value="http2">HTTP/2 (1 Multiplexed Connection)</option>
+                <option value="http3">HTTP/3 QUIC (UDP 0-RTT)</option>
               </select>
-              <div class="pill-hint" id="httpHint">Persistent Keep-Alive reuses TCP sockets for multiple requests.</div>
             </div>
 
-            <!-- 2. Web Caching -->
-            <div class="pill-control-item">
-              <div class="pill-control-header">
-                <label><i class="fa-solid fa-server text-warning"></i> 2. Web & Edge Caching</label>
-                <input type="checkbox" id="cacheToggle" class="switch-input" checked>
-                <label for="cacheToggle" class="switch-label"></label>
+            <div class="knob-row">
+              <div class="knob-split">
+                <label><i class="fa-solid fa-server text-success"></i> Web Caching</label>
+                <label class="switch">
+                  <input type="checkbox" id="cacheToggle" checked>
+                  <span class="slider"></span>
+                </label>
               </div>
-              <div class="sub-options" id="cacheSubOptions">
-                <div class="sub-option-row">
-                  <span>Browser Cache & ETag (304)</span>
-                  <input type="checkbox" id="browserCacheCheck" checked>
-                </div>
-                <div class="sub-option-row">
-                  <span>CDN / Reverse Proxy Edge Cache</span>
-                  <input type="checkbox" id="cdnCacheCheck" checked>
-                </div>
-                <div class="sub-slider-wrap">
-                  <div class="sub-slider-label">Edge Cache Hit Ratio: <b id="cacheHitRateLabel" class="text-warning">85%</b></div>
-                  <input type="range" id="cacheHitSlider" min="10" max="99" value="85" class="custom-range range-sm">
-                </div>
+              <div class="range-sub-inline" id="cacheSubOptions">
+                <span>Edge Hit Rate: <b id="cacheHitRateLabel" class="text-success">85%</b></span>
+                <input type="range" id="cacheHitSlider" min="10" max="99" value="85" class="custom-range range-sm">
               </div>
             </div>
 
-            <!-- 3. Proxy Servers & Load Balancing -->
-            <div class="pill-control-item">
-              <div class="pill-control-header">
-                <label><i class="fa-solid fa-diagram-project text-warning"></i> 3. Reverse Proxy Cluster</label>
-                <input type="checkbox" id="proxyToggle" class="switch-input" checked>
-                <label for="proxyToggle" class="switch-label"></label>
+            <div class="knob-row">
+              <div class="knob-split">
+                <label><i class="fa-solid fa-diagram-project text-success"></i> Reverse Proxy</label>
+                <label class="switch">
+                  <input type="checkbox" id="proxyToggle" checked>
+                  <span class="slider"></span>
+                </label>
               </div>
-              <div class="sub-options" id="proxySubOptions">
-                <div class="sub-option-row">
-                  <span>Backend Origin Web Nodes:</span>
-                  <select id="serverNodesSelect" class="custom-select-sm">
-                    <option value="1">1 Node (Single Point of Failure)</option>
-                    <option value="2">2 Clustered Servers</option>
-                    <option value="4" selected>4 Clustered Servers (Nginx)</option>
-                    <option value="8">8 Auto-scaling Elastic Nodes</option>
-                  </select>
-                </div>
-                <div class="sub-option-row">
-                  <span>SSL/TLS Offloading at Proxy</span>
-                  <input type="checkbox" id="sslOffloadCheck" checked>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Cookies & Header Overhead -->
-            <div class="pill-control-item">
-              <div class="pill-control-header">
-                <label><i class="fa-solid fa-cookie-bite text-warning"></i> 4. Cookie Overhead</label>
-                <span class="pill-tag" id="cookieTag">Lightweight</span>
-              </div>
-              <select id="cookieOptimizationSelect" class="custom-select">
-                <option value="bloated">Bloated (4KB Session + Tracker on ALL Assets)</option>
-                <option value="standard">Standard (1KB Session Cookie on all)</option>
-                <option value="optimized" selected>Cookie-Free Domain for Static (CDN) + 200B JWT</option>
-              </select>
-              <div class="pill-hint">Cookie-free static domains eliminate megabytes of wasted upstream headers.</div>
-            </div>
-
-            <!-- 5. Client-Server Communication -->
-            <div class="pill-control-item">
-              <div class="pill-control-header">
-                <label><i class="fa-solid fa-file-zipper text-warning"></i> 5. Data Compression</label>
-                <select id="compressionSelect" class="custom-select-sm">
-                  <option value="none">No Compression</option>
-                  <option value="gzip">Gzip (70% payload cut)</option>
-                  <option value="brotli" selected>Brotli (82% payload cut)</option>
+              <div class="select-sub-inline" id="proxySubOptions">
+                <span>Origin Nodes:</span>
+                <select id="serverNodesSelect" class="custom-select-sm">
+                  <option value="1">1 Server Node</option>
+                  <option value="2">2 Servers</option>
+                  <option value="4" selected>4 Clustered Servers</option>
+                  <option value="8">8 Scaled Nodes</option>
                 </select>
               </div>
-              <div class="sub-option-row mt-2">
-                <span>Asset Minification & WebP</span>
-                <input type="checkbox" id="minifyCheck" checked>
-              </div>
             </div>
 
+            <div class="knob-row">
+              <label for="cookieOptimizationSelect"><i class="fa-solid fa-cookie-bite text-success"></i> Cookie Overhead</label>
+              <select id="cookieOptimizationSelect" class="custom-select">
+                <option value="bloated">Bloated (4KB Cookie on all assets)</option>
+                <option value="standard">Standard (1KB Cookie)</option>
+                <option value="optimized" selected>Cookie-Free Domain for Static (CDN)</option>
+              </select>
+            </div>
+
+            <div class="knob-row">
+              <label for="compressionSelect"><i class="fa-solid fa-file-zipper text-success"></i> Compression</label>
+              <select id="compressionSelect" class="custom-select">
+                <option value="none">No Compression (14.8 MB)</option>
+                <option value="gzip">Gzip (70% Payload cut)</option>
+                <option value="brotli" selected>Brotli (82% Payload cut)</option>
+              </select>
+            </div>
           </div>
 
-          <!-- Sim Run Controls -->
-          <div class="sim-action-buttons">
-            <button class="btn btn-success w-100" id="btnRunSim"><i class="fa-solid fa-play"></i> Run Stress Test Burst</button>
-          </div>
+          <button class="btn btn-primary w-100 mt-2" id="btnRunSim"><i class="fa-solid fa-play"></i> Simulate 10k Surge Burst</button>
         </aside>
 
-        <!-- Visual Topology & Live Simulation Canvas (Center & Right) -->
-        <div class="simulation-view">
+        <!-- Main Simulation Visual Area -->
+        <div class="sim-visual-area">
           
-          <!-- Key Metric Gauges -->
+          <!-- Key Metrics Grid -->
           <div class="metrics-grid">
-            <div class="metric-card" id="metricPageLoadCard">
-              <div class="metric-icon"><i class="fa-solid fa-stopwatch"></i></div>
-              <div class="metric-data">
-                <span class="metric-label">Page Load Time (PLT)</span>
-                <h2 class="metric-value" id="valPageLoad">420 <span class="unit">ms</span></h2>
-                <span class="metric-status status-good" id="statusPageLoad"><i class="fa-solid fa-circle-check"></i> Blazing Fast (97% Faster)</span>
+            <div class="metric-card card">
+              <div class="m-icon"><i class="fa-solid fa-stopwatch"></i></div>
+              <div class="m-info">
+                <span class="m-label">Page Load Time (PLT)</span>
+                <h3 class="m-val" id="valPageLoad">420 <span class="m-unit">ms</span></h3>
+                <span class="m-badge text-success" id="statusPageLoad"><i class="fa-solid fa-bolt"></i> 97% Faster</span>
               </div>
             </div>
 
-            <div class="metric-card" id="metricServerCpuCard">
-              <div class="metric-icon"><i class="fa-solid fa-microchip"></i></div>
-              <div class="metric-data">
-                <span class="metric-label">Origin Server Load</span>
-                <h2 class="metric-value" id="valServerCpu">18 <span class="unit">%</span></h2>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" id="barServerCpu" style="width: 18%;"></div>
-                </div>
-                <span class="metric-status status-good" id="statusServerCpu">Optimal & Healthy</span>
+            <div class="metric-card card">
+              <div class="m-icon"><i class="fa-solid fa-microchip"></i></div>
+              <div class="m-info">
+                <span class="m-label">Origin Server Load</span>
+                <h3 class="m-val" id="valServerCpu">18 <span class="m-unit">%</span></h3>
+                <div class="meter-track"><div class="meter-bar" id="barServerCpu" style="width: 18%;"></div></div>
+                <span class="m-badge text-success" id="statusServerCpu"><i class="fa-solid fa-circle-check"></i> Optimal</span>
               </div>
             </div>
 
-            <div class="metric-card" id="metricBandwidthCard">
-              <div class="metric-icon"><i class="fa-solid fa-network-wired"></i></div>
-              <div class="metric-data">
-                <span class="metric-label">Data Transfer</span>
-                <h2 class="metric-value" id="valBandwidth">1.4 <span class="unit">MB/page</span></h2>
-                <span class="metric-status" id="statusBandwidth">Original: 12.8 MB (Saved 89%)</span>
+            <div class="metric-card card">
+              <div class="m-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <div class="m-info">
+                <span class="m-label">Data Transfer</span>
+                <h3 class="m-val" id="valBandwidth">1.4 <span class="m-unit">MB/page</span></h3>
+                <span class="m-sub" id="statusBandwidth">Original: 12.8 MB (Saved 89%)</span>
               </div>
             </div>
 
-            <div class="metric-card" id="metricConnectionsCard">
-              <div class="metric-icon"><i class="fa-solid fa-handshake"></i></div>
-              <div class="metric-data">
-                <span class="metric-label">TCP Handshakes</span>
-                <h2 class="metric-value" id="valTcpHandshakes">1 <span class="unit">socket</span></h2>
-                <span class="metric-status" id="statusTcpHandshakes">Non-persistent would take 42 sockets</span>
+            <div class="metric-card card">
+              <div class="m-icon"><i class="fa-solid fa-handshake"></i></div>
+              <div class="m-info">
+                <span class="m-label">TCP Handshakes</span>
+                <h3 class="m-val" id="valTcpHandshakes">1 <span class="m-unit">socket</span></h3>
+                <span class="m-sub" id="statusTcpHandshakes">Non-persistent: 42 sockets</span>
               </div>
             </div>
           </div>
 
-          <!-- Interactive Network Topology Canvas -->
-          <div class="topology-card card">
-            <div class="topology-header">
-              <div class="topology-title">
-                <i class="fa-solid fa-diagram-project"></i> Real-Time Request Flow Topology & Packet Animation
-              </div>
-              <div class="topology-legend">
-                <span class="legend-item"><span class="legend-dot client-dot"></span> Student Browser</span>
-                <span class="legend-item"><span class="legend-dot cdn-dot"></span> Edge Proxy / CDN</span>
-                <span class="legend-item"><span class="legend-dot server-dot"></span> Origin Web Cluster</span>
-                <span class="legend-item"><span class="legend-dot db-dot"></span> Admission DB</span>
+          <!-- Animated Packet Flow Canvas -->
+          <div class="topology-panel card">
+            <div class="topo-head">
+              <div class="topo-title"><i class="fa-solid fa-diagram-project text-success"></i> Real-Time Request Flow Topology</div>
+              <div class="topo-legend">
+                <span><span class="dot d-client"></span> Students</span>
+                <span><span class="dot d-cdn"></span> Edge CDN</span>
+                <span><span class="dot d-server"></span> Origin Nodes</span>
+                <span><span class="dot d-db"></span> Database</span>
               </div>
             </div>
 
-            <!-- Canvas for animated packets -->
-            <div class="canvas-container">
+            <div class="canvas-box">
               <canvas id="networkCanvas"></canvas>
               
-              <!-- HTML overlay nodes for interactive clicking -->
-              <div class="canvas-overlay-nodes">
-                <div class="topology-node node-client" id="nodeClient" title="Student Connection Pool">
+              <!-- Interactive Topology Overlay Nodes -->
+              <div class="topology-nodes">
+                <div class="t-node" id="nodeClient">
                   <i class="fa-solid fa-users"></i>
-                  <span class="node-title">Students</span>
-                  <span class="node-sub" id="clientNodeSub">15k Active</span>
+                  <span class="tn-title">Students</span>
+                  <span class="tn-sub" id="clientNodeSub">15k Active</span>
                 </div>
 
-                <div class="topology-node node-proxy" id="nodeProxy" title="Reverse Proxy & CDN Edge Cache">
-                  <i class="fa-solid fa-shield-halved"></i>
-                  <span class="node-title">Nginx / CDN</span>
-                  <span class="node-sub" id="proxyNodeSub">Cache: 85% Hit</span>
+                <div class="t-node" id="nodeProxy">
+                  <i class="fa-solid fa-shield-halved text-success"></i>
+                  <span class="tn-title">Reverse Proxy / CDN</span>
+                  <span class="tn-sub text-success" id="proxyNodeSub">85% Cache Hit</span>
                 </div>
 
-                <div class="topology-node node-server" id="nodeServer" title="Backend Origin Application Cluster">
-                  <i class="fa-solid fa-server"></i>
-                  <span class="node-title">Origin Server</span>
-                  <span class="node-sub" id="serverNodeSub">4 Nodes (Load: 18%)</span>
+                <div class="t-node" id="nodeServer">
+                  <i class="fa-solid fa-server text-primary"></i>
+                  <span class="tn-title">Origin Cluster</span>
+                  <span class="tn-sub" id="serverNodeSub">4 Nodes (18% Load)</span>
                 </div>
 
-                <div class="topology-node node-db" id="nodeDb" title="Admission Database">
-                  <i class="fa-solid fa-database"></i>
-                  <span class="node-title">Admission DB</span>
-                  <span class="node-sub" id="dbNodeSub">Pool: 24/50</span>
+                <div class="t-node" id="nodeDb">
+                  <i class="fa-solid fa-database text-warning"></i>
+                  <span class="tn-title">Admission DB</span>
+                  <span class="tn-sub" id="dbNodeSub">Pool: 24/50</span>
                 </div>
               </div>
             </div>
 
-            <div class="canvas-live-log" id="canvasLiveLog">
-              <i class="fa-solid fa-terminal text-warning"></i> <span id="logMessage">System steady state: HTTP/2 multiplexing active. 85% static assets served from edge cache.</span>
+            <div class="topo-log">
+              <i class="fa-solid fa-terminal text-success"></i> <span id="logMessage">System steady state: HTTP/2 multiplexing active. 85% static assets served from edge cache.</span>
             </div>
           </div>
 
-          <!-- Real-Time Charts & Asset Waterfall -->
-          <div class="charts-grid">
-            <!-- Latency & Throughput Live Chart -->
-            <div class="card chart-box">
-              <div class="chart-header">
-                <h4><i class="fa-solid fa-chart-line text-warning"></i> Admission Load vs Latency Stress Curve</h4>
-                <span class="badge badge-accent">Live Stress Test</span>
+          <!-- Real-Time Stress Chart & Waterfall -->
+          <div class="charts-row">
+            <div class="card chart-panel">
+              <div class="panel-head-sm">
+                <h4><i class="fa-solid fa-chart-line text-success"></i> Admission Load vs Latency Stress Curve</h4>
+                <span class="badge">Live Curve</span>
               </div>
               <div class="chart-canvas-wrap">
                 <canvas id="latencyChart"></canvas>
               </div>
             </div>
 
-            <!-- Page Asset Waterfall Waterfall Inspector -->
-            <div class="card waterfall-box">
-              <div class="chart-header">
-                <h4><i class="fa-solid fa-bars-staggered text-warning"></i> Admission Page Waterfall (42 Assets)</h4>
+            <div class="card waterfall-panel">
+              <div class="panel-head-sm">
+                <h4><i class="fa-solid fa-bars-staggered text-success"></i> Admission Page Asset Waterfall (42 Assets)</h4>
                 <span class="badge" id="waterfallSummaryBadge">Total: 420 ms</span>
               </div>
               <div class="waterfall-list" id="waterfallList">
-                <!-- Dynamically populated waterfall items -->
+                <!-- Dynamically populated -->
               </div>
             </div>
           </div>
@@ -334,466 +322,156 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: BEFORE VS AFTER COMPARISON -->
+    <!-- 3. CACHING & PROXY SECTION -->
     <!-- ========================================================================= -->
-    <section id="tab-comparison" class="tab-content">
-      <div class="comparison-hero">
-        <h2>Side-by-Side Admission Stress Test</h2>
-        <p>Direct benchmark comparing the unoptimized college admission portal vs the fully optimized PBL-8 enhanced architecture during peak 25,000 concurrent applicant registration.</p>
-      </div>
-
-      <div class="split-comparison-container">
-        <!-- Left: Unoptimized Legacy System -->
-        <div class="comparison-column unoptimized-col card">
-          <div class="column-header">
-            <div class="state-badge danger-badge"><i class="fa-solid fa-circle-xmark"></i> Legacy Admission Setup (Unoptimized)</div>
-            <h3>Critical Overload & Server Collapse</h3>
-          </div>
-
-          <div class="mock-browser">
-            <div class="browser-bar">
-              <div class="browser-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-              <div class="browser-url"><i class="fa-solid fa-lock text-danger"></i> http://admission.college.edu/portal</div>
-              <div class="browser-status text-danger"><i class="fa-solid fa-spinner fa-spin"></i> Waiting for server...</div>
-            </div>
-            <div class="browser-screen screen-unoptimized">
-              <div class="error-modal">
-                <i class="fa-solid fa-triangle-exclamation modal-icon text-danger"></i>
-                <h4>504 Gateway Time-out</h4>
-                <p>The origin server failed to respond in time due to TCP socket exhaustion and database lock contention.</p>
-                <div class="error-tech-info">
-                  <span>Protocol: HTTP/1.0 (Non-Persistent)</span>
-                  <span>Caching: Disabled (Cache-Control: no-cache)</span>
-                  <span>Payload: 14.8 MB (Uncompressed)</span>
-                  <span>Cookies: 4.2 KB on all 42 assets</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="spec-table-wrap">
-            <table class="spec-table">
-              <tr>
-                <td><i class="fa-solid fa-stopwatch"></i> Page Load Time (PLT)</td>
-                <td class="text-danger fw-bold">14,650 ms (14.6s)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-handshake"></i> TCP Handshakes</td>
-                <td class="text-danger">42 separate 3-way handshakes</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-server"></i> Origin Server Hits</td>
-                <td class="text-danger">100% (0% Caching)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-microchip"></i> Server CPU Utilization</td>
-                <td class="text-danger fw-bold">99.8% (Crash Threshold)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-cookie"></i> Upstream Cookie Waste</td>
-                <td class="text-danger">176.4 KB per student pageview</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-check"></i> Error Rate</td>
-                <td class="text-danger fw-bold">64.2% Request Timeouts</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- Right: Fully Optimized PBL-8 Architecture -->
-        <div class="comparison-column optimized-col card">
-          <div class="column-header">
-            <div class="state-badge success-badge"><i class="fa-solid fa-circle-check"></i> PBL-8 Optimized Architecture</div>
-            <h3>Instant 320ms Lightning Experience</h3>
-          </div>
-
-          <div class="mock-browser">
-            <div class="browser-bar">
-              <div class="browser-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-              <div class="browser-url"><i class="fa-solid fa-lock text-warning"></i> https://admission.college.edu/portal</div>
-              <div class="browser-status text-warning"><i class="fa-solid fa-check"></i> Loaded in 320ms</div>
-            </div>
-            <div class="browser-screen screen-optimized">
-              <div class="admission-portal-preview">
-                <div class="portal-header">
-                  <div class="portal-logo"><i class="fa-solid fa-graduation-cap"></i> Apex University Admission Portal</div>
-                  <div class="portal-user"><i class="fa-solid fa-user-check"></i> Applicant #2026-9481</div>
-                </div>
-                <div class="portal-body">
-                  <div class="alert-success-banner"><i class="fa-solid fa-circle-check"></i> Merit List 2026 Live: Your Application Status is Confirmed!</div>
-                  <div class="portal-grid">
-                    <div class="p-card"><i class="fa-solid fa-file-invoice"></i> Application Form</div>
-                    <div class="p-card"><i class="fa-solid fa-list-check"></i> Document Verification</div>
-                    <div class="p-card"><i class="fa-solid fa-credit-card"></i> Fee Payment Gateway</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="spec-table-wrap">
-            <table class="spec-table">
-              <tr>
-                <td><i class="fa-solid fa-stopwatch"></i> Page Load Time (PLT)</td>
-                <td class="text-warning fw-bold">320 ms (97.8% Faster)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-handshake"></i> TCP Handshakes</td>
-                <td class="text-warning fw-bold">1 single Multiplexed Connection</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-server"></i> Origin Server Hits</td>
-                <td class="text-warning">Only 8% (92% Edge/Browser Cache Hit)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-microchip"></i> Server CPU Utilization</td>
-                <td class="text-warning fw-bold">14.5% (Smooth & Scalable)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-cookie"></i> Upstream Cookie Waste</td>
-                <td class="text-warning">0 KB on Static (Cookie-Free Domain)</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-check"></i> Error Rate</td>
-                <td class="text-warning fw-bold">0.0% (100% Success Rate)</td>
-              </tr>
-            </table>
-          </div>
+    <section id="caching-proxy" class="pbl-section">
+      <div class="section-header">
+        <div>
+          <span class="section-badge">3. Web Caching & Proxy Servers</span>
+          <h2>Edge Caching, 304 Validation & Reverse Proxy Load Balancing</h2>
         </div>
       </div>
 
-      <!-- Comparative Summary Callout -->
-      <div class="metrics-comparison-banner card">
-        <div class="banner-stat">
-          <span class="stat-number">45.7x</span>
-          <span class="stat-desc">Throughput Capacity Increase</span>
-        </div>
-        <div class="banner-stat">
-          <span class="stat-number">91.4%</span>
-          <span class="stat-desc">Bandwidth Cost Reduction</span>
-        </div>
-        <div class="banner-stat">
-          <span class="stat-number">0.0%</span>
-          <span class="stat-desc">Server Crash / 504 Timeouts</span>
-        </div>
-        <div class="banner-stat">
-          <span class="stat-number">100 / 100</span>
-          <span class="stat-desc">Lighthouse Web Performance</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 3: 5-PILLAR DEEP DIVE LABS -->
-    <!-- ========================================================================= -->
-    <section id="tab-deep-dive" class="tab-content">
-      <div class="deep-dive-nav">
-        <button class="sub-tab active" data-subtab="lab-http"><i class="fa-solid fa-arrow-right-arrow-left"></i> 1. Persistent HTTP</button>
-        <button class="sub-tab" data-subtab="lab-cache"><i class="fa-solid fa-database"></i> 2. Web Caching</button>
-        <button class="sub-tab" data-subtab="lab-proxy"><i class="fa-solid fa-server"></i> 3. Reverse Proxies</button>
-        <button class="sub-tab" data-subtab="lab-cookies"><i class="fa-solid fa-cookie-bite"></i> 4. Cookies & Security</button>
-        <button class="sub-tab" data-subtab="lab-comm"><i class="fa-solid fa-file-zipper"></i> 5. Efficient Comm</button>
-      </div>
-
-      <!-- LAB 1: Persistent HTTP -->
-      <div class="sub-tab-content active" id="lab-http">
-        <div class="lab-layout card">
-          <div class="lab-text">
-            <span class="lab-badge">Pillar 1: Persistent HTTP Connection Architecture</span>
-            <h3>Solving the 3-Way Handshake Explosion</h3>
-            <p>In <strong>HTTP/1.0 (Non-Persistent)</strong>, every single resource (HTML, 10 CSS files, 15 JavaScript bundles, 16 images) forces a separate TCP 3-way handshake (<code>SYN &rarr; SYN-ACK &rarr; ACK</code>) plus TLS negotiation and TCP connection teardown (<code>FIN &rarr; ACK</code>).</p>
-            <div class="formula-box">
-              <code>Total Latency (Non-Persistent) = N &times; (2 &times; RTT + TLS_RTT) + Data_Transfer_Time</code>
-              <br>
-              <code>Total Latency (Persistent HTTP/2) = 1 &times; (RTT + TLS_RTT) + Stream_Multiplexing_Time</code>
-            </div>
-            
-            <div class="interactive-tool">
-              <h4>Interactive RTT Handshake Calculator</h4>
-              <div class="tool-controls">
-                <label>Number of Page Assets: <b id="calcAssetCountLabel" class="text-warning">35</b></label>
-                <input type="range" id="calcAssetSlider" min="5" max="80" value="35" class="custom-range">
-                <label class="mt-2">Network RTT: <b id="calcRttLabel" class="text-warning">75 ms</b></label>
-                <input type="range" id="calcRttSlider" min="10" max="250" value="75" class="custom-range">
+      <div class="two-col-grid">
+        <!-- Web Caching Column -->
+        <div class="card sub-card">
+          <div class="card-title-icon"><i class="fa-solid fa-database text-success"></i> Multi-Tier Web Caching</div>
+          <p class="card-desc">During admission registration, 90% of page weight comes from static files (University logo, campus banners, CSS, JavaScript libraries). Multi-tier caching prevents millions of unnecessary database and web server hits.</p>
+          
+          <div class="tier-box-list">
+            <div class="tier-box">
+              <i class="fa-solid fa-laptop text-success"></i>
+              <div>
+                <b>1. Browser Cache (Local Disk/RAM):</b>
+                <code>Cache-Control: public, max-age=31536000, immutable</code> &rarr; <strong>0 ms</strong> instant load from memory.
               </div>
-              <div class="calc-results-grid">
-                <div class="calc-res red-res">
-                  <span>HTTP/1.0 Overhead</span>
-                  <h3 id="calcHttp10Res">5,250 ms</h3>
-                  <small>35 handshakes &times; 2 RTT</small>
-                </div>
-                <div class="calc-res yellow-res">
-                  <span>HTTP/1.1 Keep-Alive</span>
-                  <h3 id="calcHttp11Res">1,312 ms</h3>
-                  <small>6 connection pools</small>
-                </div>
-                <div class="calc-res green-res">
-                  <span>HTTP/2 Multiplexed</span>
-                  <h3 id="calcHttp2Res">150 ms</h3>
-                  <small>1 single TCP socket</small>
-                </div>
+            </div>
+            <div class="tier-box">
+              <i class="fa-solid fa-cloud text-success"></i>
+              <div>
+                <b>2. Edge CDN Cache (Closest PoP):</b>
+                <code>ETag: "64f9b-192a"</code> / <code>If-None-Match</code> &rarr; <strong>304 Not Modified</strong> (50-byte header, 0-byte payload).
+              </div>
+            </div>
+            <div class="tier-box">
+              <i class="fa-solid fa-server text-danger"></i>
+              <div>
+                <b>3. Origin DB Server:</b>
+                Only dynamic queries (e.g. <code>/api/v1/merit-rank</code>) hit the origin database.
               </div>
             </div>
           </div>
 
-          <div class="lab-visual">
-            <h4>TCP Packet Flow Timeline Comparison</h4>
-            <div class="timeline-visual">
-              <div class="timeline-col">
-                <div class="timeline-head">HTTP/1.0 (Non-Persistent)</div>
-                <div class="timeline-steps">
-                  <div class="t-step"><span class="badge-syn">SYN &rarr;</span> Handshake 1</div>
-                  <div class="t-step"><span class="badge-get">GET /index.html</span></div>
-                  <div class="t-step"><span class="badge-fin">&larr; FIN/ACK</span> Close Socket</div>
-                  <div class="t-step"><span class="badge-syn">SYN &rarr;</span> Handshake 2</div>
-                  <div class="t-step"><span class="badge-get">GET /style.css</span></div>
-                  <div class="t-step"><span class="badge-fin">&larr; FIN/ACK</span> Close Socket</div>
-                  <div class="t-step text-danger">...repeated 40 more times!</div>
-                </div>
-              </div>
-              <div class="timeline-col">
-                <div class="timeline-head">HTTP/2 (Persistent Multiplexed)</div>
-                <div class="timeline-steps">
-                  <div class="t-step"><span class="badge-syn">SYN &rarr;</span> Single Handshake</div>
-                  <div class="t-step"><span class="badge-tls">TLS 1.3 0-RTT</span> Setup</div>
-                  <div class="t-step stream-step"><span class="badge-stream">Stream 1:</span> HTML</div>
-                  <div class="t-step stream-step"><span class="badge-stream">Stream 3:</span> CSS Bundle</div>
-                  <div class="t-step stream-step"><span class="badge-stream">Stream 5:</span> JavaScript</div>
-                  <div class="t-step stream-step"><span class="badge-stream">Stream 7:</span> Images</div>
-                  <div class="t-step text-warning">All in parallel over 1 socket!</div>
-                </div>
-              </div>
+          <div class="workbench-box mt-3">
+            <label><b>Live Cache-Control Simulator:</b></label>
+            <div class="workbench-controls mt-1">
+              <select id="cacheAssetSelect" class="custom-select">
+                <option value="logo">college-campus-banner.webp (2.4 MB)</option>
+                <option value="bundle">admission-form-app.bundle.js (1.2 MB)</option>
+                <option value="api">/api/v1/applicant-status (Dynamic JSON)</option>
+              </select>
+              <button class="btn btn-primary mt-1" id="btnTestCacheRequest"><i class="fa-solid fa-bolt"></i> Send HTTP GET</button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LAB 2: Web Caching -->
-      <div class="sub-tab-content" id="lab-cache">
-        <div class="lab-layout card">
-          <div class="lab-text">
-            <span class="lab-badge">Pillar 2: Multi-Tier Web Caching</span>
-            <h3>Browser, ETag, and CDN Edge Offloading</h3>
-            <p>During admission registration, 90% of page weight comes from static files (University logo, campus banners, CSS, JavaScript libraries, PDF guidelines) that rarely change. Multi-tier caching prevents millions of unnecessary database and web server hits.</p>
-
-            <div class="cache-layers-diagram">
-              <div class="layer-box layer-browser">
-                <div class="layer-header"><i class="fa-solid fa-laptop text-warning"></i> 1. Browser Cache (Local Disk/RAM)</div>
-                <p><code>Cache-Control: public, max-age=31536000, immutable</code> &rarr; <strong>0 ms</strong> instant load from memory without touching network.</p>
-              </div>
-              <div class="layer-box layer-edge">
-                <div class="layer-header"><i class="fa-solid fa-cloud text-warning"></i> 2. Edge CDN Cache (Closest PoP)</div>
-                <p><code>ETag: "64f9b-192a"</code> / <code>If-None-Match</code> &rarr; <strong>304 Not Modified</strong> (50-byte header, 0-byte payload).</p>
-              </div>
-              <div class="layer-box layer-origin">
-                <div class="layer-header"><i class="fa-solid fa-server text-danger"></i> 3. Origin Application Server</div>
-                <p>Only dynamic APIs (e.g. <code>/api/check-merit-rank</code>) hit the origin database.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lab-visual">
-            <h4>Interactive Cache-Control Simulator</h4>
-            <div class="cache-sim-box">
-              <div class="cache-sim-controls">
-                <label>Test Asset:</label>
-                <select id="cacheAssetSelect" class="custom-select">
-                  <option value="logo">college-campus-banner.webp (2.4 MB)</option>
-                  <option value="bundle">admission-form-app.bundle.js (1.2 MB)</option>
-                  <option value="api">/api/v1/applicant-status (Dynamic JSON)</option>
-                </select>
-                <button class="btn btn-primary mt-2" id="btnTestCacheRequest"><i class="fa-solid fa-bolt"></i> Send HTTP GET Request</button>
-              </div>
-
-              <div class="cache-response-preview" id="cacheResponsePreview">
-                <div class="res-status-tag tag-200">HTTP/1.1 200 OK (Origin Hit)</div>
-                <pre class="header-code"><code>Date: Mon, 05 Oct 2026 22:25:00 GMT
+            <div class="cache-res-view mt-2" id="cacheResponsePreview">
+              <div class="res-tag-success"><i class="fa-solid fa-circle-check"></i> HTTP/1.1 200 OK (Origin Hit)</div>
+              <pre><code>Date: Tue, 06 Oct 2026 09:30:00 GMT
 Server: Apex-Nginx/1.24.0
 Content-Type: image/webp
-Content-Length: 2457600
 Cache-Control: public, max-age=31536000, immutable
 ETag: W/"5829-65a8e"
 CF-Cache-Status: MISS (Cached for future requests)</code></pre>
-              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- LAB 3: Reverse Proxies -->
-      <div class="lab-layout sub-tab-content" id="lab-proxy">
-        <div class="lab-text card">
-          <span class="lab-badge">Pillar 3: Reverse Proxy & Load Balancing</span>
-          <h3>Shielding Origin Servers from Concurrency Storms</h3>
-          <p>A <strong>Reverse Proxy (e.g., Nginx, HAProxy)</strong> sits in front of backend admission microservices to perform:</p>
-          <ul class="feature-bullets">
-            <li><strong>Load Balancing:</strong> Distributes incoming applicants using Round-Robin, Least-Connections, or IP-Hash algorithms.</li>
+        <!-- Reverse Proxy Column -->
+        <div class="card sub-card">
+          <div class="card-title-icon"><i class="fa-solid fa-shield-halved text-success"></i> Reverse Proxy & Load Balancing</div>
+          <p class="card-desc">An <strong>Nginx Reverse Proxy</strong> sits in front of backend admission microservices to shield origin application servers from concurrency storms.</p>
+          
+          <ul class="feature-checklist">
+            <li><strong>Load Balancing:</strong> Distributes applicants using Round-Robin, Least-Connections, or IP-Hash algorithms.</li>
             <li><strong>SSL/TLS Offloading:</strong> Handles expensive cryptographic handshakes at the edge so backend app nodes focus 100% CPU on admission business logic.</li>
-            <li><strong>DDoS & Rate Limiting:</strong> Throttles malicious scraping of admission merit lists.</li>
-            <li><strong>Connection Buffering & Keep-Alive Pooling:</strong> Shields slow client networks from consuming backend worker threads.</li>
+            <li><strong>DDoS & Rate Limiting:</strong> Throttles automated scraping of admission merit lists.</li>
+            <li><strong>Connection Pooling:</strong> Shields backend worker threads from slow cellular networks.</li>
           </ul>
 
-          <div class="lb-interactive-controls mt-3">
-            <label>Load Balancing Algorithm:</label>
-            <select id="lbAlgoSelect" class="custom-select">
-              <option value="round_robin">Round-Robin (Equal Distribution)</option>
-              <option value="least_conn">Least-Connections (Dynamic Adaptive)</option>
-              <option value="ip_hash">IP Hash (Session Affinity Sticky)</option>
-            </select>
-            <div class="server-node-status-grid mt-3" id="serverNodeStatusGrid">
-              <!-- Dynamically populated server cluster status -->
+          <div class="cluster-config-box mt-3">
+            <div class="select-row">
+              <label>Load Balancing Algorithm:</label>
+              <select id="lbAlgoSelect" class="custom-select-sm">
+                <option value="round_robin">Round-Robin (Equal Distribution)</option>
+                <option value="least_conn">Least-Connections (Dynamic Adaptive)</option>
+                <option value="ip_hash">IP Hash (Sticky Sessions)</option>
+              </select>
+            </div>
+            <div class="cluster-nodes-grid mt-2" id="serverNodeStatusGrid">
+              <!-- Dynamically rendered -->
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- LAB 4: Cookies & Security -->
-      <div class="lab-layout sub-tab-content" id="lab-cookies">
-        <div class="lab-text card">
-          <span class="lab-badge">Pillar 4: Cookie Optimization & Session Security</span>
-          <h3>Eliminating Header Bloat & Securing Sessions</h3>
-          <p>By default, browsers attach all cookies matching a domain to <strong>every single request</strong>—including images, fonts, and scripts that don't need authentication!</p>
+    <!-- ========================================================================= -->
+    <!-- 4. HTTP & COOKIES SECTION -->
+    <!-- ========================================================================= -->
+    <section id="http-cookies" class="pbl-section">
+      <div class="section-header">
+        <div>
+          <span class="section-badge">4. HTTP Protocols & State Management</span>
+          <h2>Persistent HTTP, Stream Multiplexing & Cookie Optimization</h2>
+        </div>
+      </div>
 
+      <div class="two-col-grid">
+        <!-- Persistent HTTP Column -->
+        <div class="card sub-card">
+          <div class="card-title-icon"><i class="fa-solid fa-arrow-right-arrow-left text-success"></i> Persistent HTTP vs Non-Persistent</div>
+          <p class="card-desc">In <strong>HTTP/1.0 (Non-Persistent)</strong>, every single resource forces a separate TCP 3-way handshake (<code>SYN &rarr; SYN-ACK &rarr; ACK</code>) plus TLS negotiation and socket teardown (42 handshakes). <strong>HTTP/2</strong> streams all assets concurrently over <strong>1 single TCP connection</strong>.</p>
+          
+          <div class="calc-tool-card mt-2">
+            <h4><i class="fa-solid fa-calculator text-success"></i> RTT Handshake Overhead Calculator</h4>
+            <div class="calc-inputs mt-2">
+              <div class="calc-input-row">
+                <span>Number of Page Assets: <b id="calcAssetCountLabel" class="text-success">35</b></span>
+                <input type="range" id="calcAssetSlider" min="5" max="80" value="35" class="custom-range">
+              </div>
+              <div class="calc-input-row mt-1">
+                <span>Network Latency (RTT): <b id="calcRttLabel" class="text-success">75 ms</b></span>
+                <input type="range" id="calcRttSlider" min="10" max="250" value="75" class="custom-range">
+              </div>
+            </div>
+            <div class="calc-scorecard-grid mt-2">
+              <div class="calc-box red-box"><span>HTTP/1.0</span><h4 id="calcHttp10Res">5,250 ms</h4><small>35 handshakes &times; 2 RTT</small></div>
+              <div class="calc-box yellow-box"><span>HTTP/1.1</span><h4 id="calcHttp11Res">1,312 ms</h4><small>6 connection pools</small></div>
+              <div class="calc-box green-box"><span>HTTP/2</span><h4 id="calcHttp2Res">150 ms</h4><small>1 multiplexed socket</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cookie Optimization Column -->
+        <div class="card sub-card">
+          <div class="card-title-icon"><i class="fa-solid fa-cookie-bite text-success"></i> Cookie Optimization & Session Security</div>
+          <p class="card-desc">By default, browsers attach domain cookies to <strong>every single request</strong>—including images, fonts, and scripts that don't need authentication!</p>
+          
           <div class="cookie-math-card">
-            <h4>The Upstream Bandwidth Multiplication Effect</h4>
-            <p>If cookie payload is <strong>4 KB</strong>, and a page has <strong>50 assets</strong> requested by <strong>25,000 students</strong>:</p>
-            <div class="math-callout">
-              <code>4 KB &times; 50 assets &times; 25,000 students = 5,000,000 KB &approx; 5.0 GB of wasted header traffic!</code>
-            </div>
+            <b>The Upstream Bandwidth Multiplication Effect:</b>
+            <code>4 KB cookie &times; 50 assets &times; 25,000 students = 5.0 GB wasted header traffic!</code>
           </div>
 
-          <div class="cookie-solutions-grid">
-            <div class="c-sol-card">
-              <h5><i class="fa-solid fa-cloud-arrow-up"></i> Solution 1: Cookie-Free Static Domain</h5>
-              <p>Serve static assets from <code>static.college-cdn.com</code>. Browsers will never attach admission session cookies to static requests.</p>
+          <div class="cookie-solutions-list mt-2">
+            <div class="cs-item">
+              <i class="fa-solid fa-cloud-arrow-up text-success"></i>
+              <div><b>Cookie-Free Static Domain:</b> Serve static assets from <code>static.college-cdn.com</code> without sending cookies.</div>
             </div>
-            <div class="c-sol-card">
-              <h5><i class="fa-solid fa-key"></i> Solution 2: Minimal JWT Tokens</h5>
-              <p>Replace bloated server session cookies with compact 180-byte HMAC tokens containing only essential student ID.</p>
+            <div class="cs-item">
+              <i class="fa-solid fa-key text-success"></i>
+              <div><b>Minimal JWTs:</b> Replace 4KB server session cookies with compact 180-byte tokens.</div>
             </div>
-            <div class="c-sol-card">
-              <h5><i class="fa-solid fa-shield-virus"></i> Solution 3: Security Flags</h5>
-              <p>Enforce <code>HttpOnly; Secure; SameSite=Strict</code> to completely prevent XSS session hijacking and CSRF attacks during admission fee payment.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- LAB 5: Efficient Client-Server Comm -->
-      <div class="lab-layout sub-tab-content" id="lab-comm">
-        <div class="lab-text card">
-          <span class="lab-badge">Pillar 5: Efficient Communication & Payload Compression</span>
-          <h3>Gzip, Brotli, and Modern Asset Bundling</h3>
-          <p>Text-based assets (HTML, JSON APIs, CSS, JavaScript) contain redundant syntax that can be compressed dynamically on-the-fly before transmission across the network.</p>
-
-          <div class="compression-benchmark-table">
-            <table class="spec-table">
-              <thead>
-                <tr>
-                  <th>Asset Type</th>
-                  <th>Raw Uncompressed</th>
-                  <th>Gzip (-68%)</th>
-                  <th>Brotli (-82%)</th>
-                  <th>Latency Benefit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Admission Application Bundle (JS)</td>
-                  <td>2,450 KB</td>
-                  <td>680 KB</td>
-                  <td class="text-warning fw-bold">420 KB</td>
-                  <td>-1.8s load time</td>
-                </tr>
-                <tr>
-                  <td>College Style Guidelines (CSS)</td>
-                  <td>480 KB</td>
-                  <td>110 KB</td>
-                  <td class="text-warning fw-bold">78 KB</td>
-                  <td>Eliminates Render Blocking</td>
-                </tr>
-                <tr>
-                  <td>Merit List JSON API (5,000 ranks)</td>
-                  <td>3,800 KB</td>
-                  <td>820 KB</td>
-                  <td class="text-warning fw-bold">510 KB</td>
-                  <td>-2.4s TTFB</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 4: LIVE HTTP INSPECTOR & HEADERS WORKBENCH -->
-    <!-- ========================================================================= -->
-    <section id="tab-headers" class="tab-content">
-      <div class="inspector-layout">
-        <div class="inspector-sidebar card">
-          <h3><i class="fa-solid fa-list-check text-warning"></i> Select Request Scenario</h3>
-          <div class="scenario-list">
-            <button class="scenario-btn active" data-scenario="non_persistent_get">
-              <span class="req-method get">GET</span>
-              <span class="req-path">/admission-portal (HTTP/1.0 Non-Persistent)</span>
-            </button>
-            <button class="scenario-btn" data-scenario="persistent_http2">
-              <span class="req-method get">GET</span>
-              <span class="req-path">/admission-portal (HTTP/2 Multiplexed)</span>
-            </button>
-            <button class="scenario-btn" data-scenario="cache_304">
-              <span class="req-method get">GET</span>
-              <span class="req-path">/assets/banner.webp (304 Not Modified)</span>
-            </button>
-            <button class="scenario-btn" data-scenario="cookie_optimized">
-              <span class="req-method post">POST</span>
-              <span class="req-path">/api/v1/auth/login (Secure Cookie/JWT)</span>
-            </button>
-            <button class="scenario-btn" data-scenario="brotli_compressed">
-              <span class="req-method get">GET</span>
-              <span class="req-path">/dist/app.min.js (Brotli Compressed)</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="inspector-viewer card">
-          <div class="viewer-header">
-            <h4 id="inspectorTitle"><i class="fa-solid fa-terminal text-warning"></i> HTTP Raw Packet Inspector</h4>
-            <span class="badge" id="inspectorBadge">HTTP/1.0 Request</span>
-          </div>
-
-          <div class="packet-columns">
-            <div class="packet-col">
-              <h5><i class="fa-solid fa-arrow-up text-warning"></i> Client Request Packet</h5>
-              <pre class="code-block" id="inspectorRequestPacket"><code>GET /admission-portal HTTP/1.0
-Host: admission.college.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
-Accept: text/html,application/xhtml+xml
-Connection: close
-Cookie: session_id=8f3b29a1c; tracking_id=99281; applicant_temp=true... [4,120 bytes]</code></pre>
-            </div>
-
-            <div class="packet-col">
-              <h5><i class="fa-solid fa-arrow-down text-warning"></i> Server Response Packet</h5>
-              <pre class="code-block" id="inspectorResponsePacket"><code>HTTP/1.0 200 OK
-Date: Mon, 05 Oct 2026 22:30:15 GMT
-Server: Apache/2.4.41 (Unix)
-Content-Type: text/html; charset=UTF-8
-Content-Length: 142850
-Connection: close
-X-Powered-By: PHP/7.4.3
-
-&lt;!-- Full Uncompressed HTML with inline styles --&gt;
-[Socket closed immediately after transmission]</code></pre>
-            </div>
-          </div>
-
-          <div class="packet-explanation" id="inspectorExplanation">
-            <div class="alert-info">
-              <strong>Technical Analysis:</strong> Notice <code>Connection: close</code>. The TCP socket is destroyed as soon as HTML is delivered. The browser is forced to open another brand-new TCP socket with another 3-way handshake for every subsequent CSS, image, and JavaScript resource!
+            <div class="cs-item">
+              <i class="fa-solid fa-shield-halved text-success"></i>
+              <div><b>Security Flags:</b> Enforce <code>HttpOnly; Secure; SameSite=Strict</code> against XSS and CSRF.</div>
             </div>
           </div>
         </div>
@@ -801,138 +479,156 @@ X-Powered-By: PHP/7.4.3
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 5: PROJECT DOSSIER & EVALUATION REPORT -->
+    <!-- 5. ARCHITECTURE SECTION -->
     <!-- ========================================================================= -->
-    <section id="tab-dossier" class="tab-content">
-      <div class="dossier-container card" id="printableDossier">
-        <div class="dossier-cover">
-          <div class="dossier-badge">PROJECT-BASED LEARNING (PBL-8) SUBMISSION REPORT</div>
-          <h1 class="dossier-main-title">Improving College Website Performance & High-Throughput Scalability During Admission Season</h1>
-          <div class="dossier-meta">
-            <div><strong>Topic:</strong> PBL-8: Improving Website Performance</div>
-            <div><strong>Domain:</strong> Computer Networks & Web Architecture</div>
-            <div><strong>Key Pillars:</strong> Persistent HTTP, Web Caching, Proxy Servers, Cookies, Efficient Client-Server Comm</div>
-            <div><strong>Status:</strong> Validated via Real-Time Mathematical Simulation</div>
+    <section id="architecture" class="pbl-section">
+      <div class="section-header">
+        <div>
+          <span class="section-badge">5. Optimized Network Architecture</span>
+          <h2>Proposed End-to-End System Topology & Mathematical Model</h2>
+        </div>
+      </div>
+
+      <div class="card section-card">
+        <div class="arch-flow-diagram">
+          <div class="arch-stage">
+            <div class="stage-num">1</div>
+            <div class="stage-info">
+              <h5>Student Clients</h5>
+              <p>HTTP/2 Multiplexing & Brotli decompression over 1 TCP socket.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">&rarr;</div>
+          <div class="arch-stage">
+            <div class="stage-num">2</div>
+            <div class="stage-info">
+              <h5>Edge CDN PoPs</h5>
+              <p>Absorbs 92% static traffic. Serves <code>304 Not Modified</code> via ETags.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">&rarr;</div>
+          <div class="arch-stage">
+            <div class="stage-num">3</div>
+            <div class="stage-info">
+              <h5>Nginx Reverse Proxy</h5>
+              <p>SSL Offloading + Least-Connections Load Balancing across origin cluster.</p>
+            </div>
+          </div>
+          <div class="arch-arrow">&rarr;</div>
+          <div class="arch-stage">
+            <div class="stage-num">4</div>
+            <div class="stage-info">
+              <h5>Origin & DB Cluster</h5>
+              <p>Connection pooled PostgreSQL for dynamic merit list APIs only.</p>
+            </div>
           </div>
         </div>
 
         <hr class="divider">
 
-        <div class="dossier-section">
-          <h3>1. Executive Summary & Problem Formulation</h3>
-          <p>During annual admissions, college web servers experience extreme traffic spikes of up to 50,000 simultaneous student visits within hours. Under traditional unoptimized web architectures, the portal suffers from debilitating slow-downs, 14.6s latency, and server crashes (504 Gateway Timeouts). This project investigates the root architectural bottlenecks and presents a comprehensive 5-pillar solution designed for modern production deployment.</p>
-        </div>
-
-        <div class="dossier-section">
-          <h3>2. Root Cause Investigation Matrix</h3>
-          <table class="dossier-table">
-            <thead>
-              <tr>
-                <th>Bottleneck Area</th>
-                <th>Root Cause in Legacy System</th>
-                <th>PBL-8 Recommended Engineering Solution</th>
-                <th>Measured Impact</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1. Connection Overhead</strong></td>
-                <td>HTTP/1.0 Non-Persistent connections require a separate TCP 3-way handshake and socket teardown for every asset.</td>
-                <td>Implement HTTP/2 or HTTP/3 with single-connection multiplexing and HPACK header compression.</td>
-                <td><strong>-97%</strong> connection overhead; handshakes reduced from 42 to 1.</td>
-              </tr>
-              <tr>
-                <td><strong>2. Cache Invalidation</strong></td>
-                <td>Origin servers forced to dynamically re-serve unchanged static assets (logos, campus photos, JavaScript bundles) on every request.</td>
-                <td>Deploy Multi-Tier Caching: Browser Cache with <code>max-age=1y, immutable</code> + CDN Edge Reverse Proxy + ETag conditional validation (304).</td>
-                <td><strong>92%</strong> origin server offload; eliminates unnecessary database lookups.</td>
-              </tr>
-              <tr>
-                <td><strong>3. Server Single Point of Failure</strong></td>
-                <td>Single monolithic Apache/PHP origin server overwhelmed by TCP SYN queues and SSL encryption calculations.</td>
-                <td>Deploy Nginx Reverse Proxy with Round-Robin / Least-Connections Load Balancing across 4 worker nodes + SSL Termination.</td>
-                <td>Server CPU drops from <strong>99.8% to 14.5%</strong>; 0 downtime.</td>
-              </tr>
-              <tr>
-                <td><strong>4. Cookie Header Bloat</strong></td>
-                <td>Unnecessary 4KB tracking & session cookies transmitted on every static image and CSS request.</td>
-                <td>Establish Cookie-Free CDN static domains (<code>static.college-cdn.com</code>) and lightweight 200B signed JWTs with <code>HttpOnly, Secure, SameSite=Strict</code>.</td>
-                <td>Saves <strong>5.0 GB</strong> of redundant upstream network bandwidth per 25k users.</td>
-              </tr>
-              <tr>
-                <td><strong>5. Payload Transmission</strong></td>
-                <td>Uncompressed HTML, CSS, JavaScript, and unoptimized high-res PNG images sent raw over wire.</td>
-                <td>Enable Brotli / Gzip compression + JavaScript bundle minification + WebP image format conversion.</td>
-                <td>Payload reduced from <strong>14.8 MB to 1.4 MB (90.5% reduction)</strong>.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="dossier-section">
-          <h3>3. Mathematical Latency Formulation</h3>
-          <div class="formula-block">
-            <p><strong>Legacy HTTP/1.0 Page Latency:</strong></p>
-            <code>T_{legacy} = \sum_{i=1}^{N} \Big( 2 \cdot RTT_{TCP} + RTT_{TLS} + \frac{Size_{raw} + Cookie_{bloated}}{Bandwidth} + T_{proc} \Big)</code>
-            <p class="mt-2"><strong>Optimized PBL-8 HTTP/2 + CDN Latency:</strong></p>
-            <code>T_{opt} = \Big( 1 \cdot RTT_{TCP} + 1 \cdot RTT_{TLS} \Big) + \frac{Size_{compressed}}{Bandwidth} + (1 - CacheHitRate) \cdot T_{origin\_proc}</code>
+        <div class="math-model-block">
+          <h3>Mathematical Latency Formulation</h3>
+          <div class="math-row mt-2">
+            <span class="math-label"><i class="fa-solid fa-calculator text-danger"></i> Legacy HTTP/1.0 Latency Formula:</span>
+            <div class="math-formula">$$T_{\text{legacy}} = \sum_{i=1}^{N} \left( 2 \cdot RTT_{\text{TCP}} + RTT_{\text{TLS}} + \frac{\text{Size}_{\text{raw}} + \text{Cookie}_{\text{bloated}}}{\text{Bandwidth}} + T_{\text{proc}} \right)$$</div>
           </div>
-        </div>
-
-        <div class="dossier-section">
-          <h3>4. Final Evaluation & Conclusion</h3>
-          <p>By applying the 5 foundational pillars of computer networking and web performance, the college admission portal achieves a <strong>97.8% reduction in latency (14.6s down to 320ms)</strong>, a <strong>91.4% reduction in bandwidth consumption</strong>, and maintains a flawless <strong>100/100 Lighthouse Web Performance score</strong> with zero server dropouts under extreme 50,000 student concurrency.</p>
-        </div>
-
-        <div class="dossier-signature-block">
-          <div class="sig-col">
-            <div class="sig-line"></div>
-            <span>Student Investigator Signature</span>
-          </div>
-          <div class="sig-col">
-            <div class="sig-line"></div>
-            <span>Project Evaluator / Professor Assessment</span>
+          <div class="math-row mt-2">
+            <span class="math-label"><i class="fa-solid fa-bolt text-success"></i> Optimized PBL-8 Latency Formula:</span>
+            <div class="math-formula">$$T_{\text{opt}} = \left( 1 \cdot RTT_{\text{TCP}} + 1 \cdot RTT_{\text{TLS}} \right) + \frac{\text{Size}_{\text{compressed}}}{\text{Bandwidth}} + (1 - \text{CacheHitRate}) \cdot T_{\text{origin\_proc}}$$</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 6: EVALUATOR QUIZ -->
+    <!-- 6. RESULTS SECTION -->
     <!-- ========================================================================= -->
-    <section id="tab-quiz" class="tab-content">
-      <div class="quiz-container card">
-        <div class="quiz-header">
-          <div class="quiz-badge">PBL LEARNING OUTCOMES VERIFICATION</div>
-          <h2>Interactive Evaluation Quiz</h2>
-          <p>Test your mastery of HTTP protocols, caching mechanisms, reverse proxy topologies, and cookie security.</p>
+    <section id="results" class="pbl-section">
+      <div class="section-header">
+        <div>
+          <span class="section-badge">6. Performance Results</span>
+          <h2>Before vs After Benchmark & Project Evaluation Dossier</h2>
         </div>
+      </div>
 
-        <div class="quiz-questions-list" id="quizQuestionsList">
-          <!-- Dynamically populated quiz questions -->
-        </div>
-
-        <div class="quiz-footer">
-          <button class="btn btn-primary" id="btnSubmitQuiz"><i class="fa-solid fa-check-double"></i> Submit Answers & Calculate Score</button>
-          <div class="quiz-score-banner d-none" id="quizScoreBanner">
-            <!-- Score result injected here -->
+      <!-- Before vs After Scorecards -->
+      <div class="compare-grid">
+        <div class="compare-card unoptimized card">
+          <div class="cmp-head">
+            <span class="badge-danger"><i class="fa-solid fa-triangle-exclamation"></i> Legacy System (Unoptimized)</span>
+            <h3>Server Collapse (14.6s Latency)</h3>
           </div>
+          
+          <table class="compact-table">
+            <tr><td>Page Load Time (PLT)</td><td class="text-danger fw-bold">14,650 ms (14.6s)</td></tr>
+            <tr><td>TCP Handshakes</td><td class="text-danger">42 sockets per student</td></tr>
+            <tr><td>Origin Server Hits</td><td class="text-danger">100% (0% Caching)</td></tr>
+            <tr><td>Server CPU Load</td><td class="text-danger fw-bold">99.8% (Crash)</td></tr>
+            <tr><td>Cookie Header Waste</td><td class="text-danger">176 KB / student</td></tr>
+            <tr><td>Error Rate</td><td class="text-danger fw-bold">64.2% Timeouts</td></tr>
+          </table>
+        </div>
+
+        <div class="compare-card optimized card">
+          <div class="cmp-head">
+            <span class="badge-success"><i class="fa-solid fa-circle-check"></i> PBL-8 Optimized Architecture</span>
+            <h3>Instant 320ms Lightning Experience</h3>
+          </div>
+
+          <table class="compact-table">
+            <tr><td>Page Load Time (PLT)</td><td class="text-success fw-bold">320 ms (-97.8%)</td></tr>
+            <tr><td>TCP Handshakes</td><td class="text-success fw-bold">1 Multiplexed socket</td></tr>
+            <tr><td>Origin Server Hits</td><td class="text-success">8% (92% Cache Hit)</td></tr>
+            <tr><td>Server CPU Load</td><td class="text-success fw-bold">14.5% (Smooth)</td></tr>
+            <tr><td>Cookie Header Waste</td><td class="text-success">0 KB on Static (CDN)</td></tr>
+            <tr><td>Error Rate</td><td class="text-success fw-bold">0.0% (100% Success)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Benchmark Summary Row -->
+      <div class="stat-summary-row card mt-3">
+        <div class="st-item"><span class="st-num text-success">45.7x</span><span class="st-desc">Throughput Increase</span></div>
+        <div class="st-item"><span class="st-num text-success">91.4%</span><span class="st-desc">Bandwidth Saved</span></div>
+        <div class="st-item"><span class="st-num text-success">0.0%</span><span class="st-desc">504 Error Rate</span></div>
+        <div class="st-item"><span class="st-num text-success">100/100</span><span class="st-desc">Lighthouse Score</span></div>
+      </div>
+
+      <!-- Printable Dossier Card -->
+      <div class="dossier-card card mt-3" id="printableDossier">
+        <div class="d-head">
+          <span class="badge">PBL-8 SUBMISSION REPORT</span>
+          <h2>Improving College Website Performance During Admission Season</h2>
+          <div class="d-meta">
+            <span><b>Domain:</b> Computer Networks</span>
+            <span><b>Author:</b> Vinay</span>
+            <span><b>Status:</b> Validated via Live Simulation Engine</span>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="d-body">
+          <h3>Conclusion & Summary</h3>
+          <p>By implementing the 5 core networking pillars (Persistent HTTP/2, Multi-Tier Caching, Reverse Proxy Load Balancing, Cookie Elimination on static assets, and Brotli Compression), the college admission portal achieves a <strong>97.8% latency reduction</strong> and handles peak 50,000 student traffic with <strong>zero server dropouts</strong>.</p>
+        </div>
+
+        <div class="d-sign">
+          <div><div class="s-line"></div><span>Student Investigator Signature</span></div>
+          <div><div class="s-line"></div><span>Evaluator / Professor Assessment</span></div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
+  <!-- Clean Footer -->
   <footer class="app-footer">
-    <div class="footer-content">
-      <span><i class="fa-solid fa-graduation-cap text-warning"></i> PBL-8: Improving Website Performance (College Admission Portal)</span>
-      <span>Pure Vanilla Web Standards (HTML5, Modern CSS, ES6 JS)</span>
-      <span>Project Evaluation Ready</span>
-    </div>
+    <span><i class="fa-solid fa-graduation-cap text-success"></i> PBL-8: Improving Website Performance (College Admission Portal)</span>
+    <span>Computer Networks Project Submission</span>
   </footer>
 
-  <!-- Core JavaScript modules -->
+  <!-- Scripts -->
   <script src="simulation.js"></script>
   <script src="labs.js"></script>
   <script src="report.js"></script>
